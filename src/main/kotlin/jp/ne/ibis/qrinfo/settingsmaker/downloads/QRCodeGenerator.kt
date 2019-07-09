@@ -16,12 +16,9 @@ import java.io.FileInputStream
 
 /**
  * 台帳ファイルから取得したQRコードを生成するためのクラス
+ * @param schema QRコードの文頭につけるスキーマ文字列
  */
-class QRCodeGenerator {
-    /**
-     * QRコードの文頭につける文字列
-     */
-    private val qrHeaderString = "bqr-komatsu://equipment?id="
+class QRCodeGenerator(private val schema: String) {
 
     fun generateQR(data: ByteArray) {
         // 台帳のSheet1から取得したSheetData
@@ -39,7 +36,7 @@ class QRCodeGenerator {
     private fun createQR(ids: List<String>) {
         ids.forEach {
             // QRコードを生成する文字列
-            val source = qrHeaderString + it
+            val source = schema + it
             //QRコード生成時のエンコーディング
             val encoding = "UTF-8"
             //サイズ(ピクセル)

@@ -22,6 +22,7 @@
 <h1>ドラッグ＆ドロップでファイルアップロード</h1>
 <div id="dragdroparea">設定ファイルをここにドロップしてください。</div>
 <br/><br/>
+<a href="settingsFile_sample.xlsx">設定ファイルのサンプルはこちら</a><br>
 <div id="status1"></div>
 <script>
         $(function() {
@@ -43,7 +44,7 @@
             },
             success: function(result, textStatus, xhr) {
               //ajax通信が成功した
-              $("#status1").append("File upload Done<br>");
+              $("#status1").append("それぞれクリックでDL<br>");
               $('#status1').append('<a href="settings.yml">settings.yml</a><br>');
               $('#status1').append('<a href="index.pug">index.pug</a><br>');
               $('#status1').append('<a href="main.js">main.js</a><br>');

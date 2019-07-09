@@ -6,11 +6,7 @@ import jp.ne.ibis.qrinfo.settingsmaker.utils.ExcelUtils
  * Excelファイルからindex.pugを作成するためのクラス
  * @param data 取得した 設定ファイル.xlsx のByteArray
  */
-class HTMLBuilder(data: ByteArray) {
-    /**
-     * 取得した設定ファイルのByteArray
-     */
-    private val byteData = data
+class HTMLBuilder(private val data: ByteArray) {
     /**
      * 取得した設定ファイルのシート名
      */
@@ -21,7 +17,7 @@ class HTMLBuilder(data: ByteArray) {
      * @return index.pugの本文
      */
     fun createHTML(): String {
-        val htmlSheetData = ExcelUtils.convertToSheet(byteData, sheetName)
+        val htmlSheetData = ExcelUtils.convertToSheet(data, sheetName)
         return createHTMLString(htmlSheetData)
     }
 

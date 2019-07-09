@@ -8,11 +8,7 @@ import java.io.FileOutputStream
  * Excelの台帳サンプルを作成するためのクラス
  * @param data 取得した 設定ファイル.xlsx のByteArray
  */
-class ExcelBuilder(data: ByteArray) {
-    /**
-     * 取得した設定ファイルのByteArray
-     */
-    private val byteData = data
+class ExcelBuilder(private val data: ByteArray) {
     /**
      * 取得した設定ファイルのシート名
      */
@@ -23,7 +19,7 @@ class ExcelBuilder(data: ByteArray) {
      */
     fun createExcel() {
         // ヘッダー設定シートのSheetData
-        val headerSheetData = ExcelUtils.convertToSheet(byteData, sheetName)
+        val headerSheetData = ExcelUtils.convertToSheet(data, sheetName)
         createWorkbook(headerSheetData)
     }
 

@@ -6,11 +6,7 @@ import jp.ne.ibis.qrinfo.settingsmaker.utils.ExcelUtils
  * Excelファイルからmain.jsを作成するためのクラス
  * @param data 取得した 設定ファイル.xlsx のByteArray
  */
-class JavaScriptBuilder(data: ByteArray) {
-    /**
-     * 取得した設定ファイルのByteArray
-     */
-    private val byteData = data
+class JavaScriptBuilder(private val data: ByteArray) {
     /**
      * 取得した設定ファイルのシート名のリスト
      */
@@ -23,7 +19,7 @@ class JavaScriptBuilder(data: ByteArray) {
     fun createJS(): String {
         // Sheet名とSheetDataのMap
         val settingsSheetData = sheetNames.associate {
-            it to ExcelUtils.convertToSheet(byteData, it)
+            it to ExcelUtils.convertToSheet(data, it)
         }
 
         return createJSString(settingsSheetData)

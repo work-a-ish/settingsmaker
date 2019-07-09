@@ -40,9 +40,10 @@ class InputFormController {
      */
     @PostMapping("/generateQR")
     @ResponseBody
-    fun generateQR(@RequestParam("files") file: MultipartFile, model: Model) {
+    fun generateQR(@RequestParam("files") file: MultipartFile,
+                   @RequestParam("schema") schema: String, model: Model) {
         // QRコードの作成
-        QRCodeGenerator().generateQR(file.bytes)
+        QRCodeGenerator(schema).generateQR(file.bytes)
     }
 
     /**
@@ -114,4 +115,10 @@ class InputFormController {
     @ResponseBody
     fun downloadExcel(): Resource = FileSystemResource("QRinfo_sample.xlsx")
 
+    /**
+     * 設定ファイルサンプルのDL用URL
+     */
+    @GetMapping("settingsFile_sample.xlsx", produces = ["application/octet-stream"])
+    @ResponseBody
+    fun downloadSettingsFile(): Resource = FileSystemResource("settingsFile_sample.xlsx")
 }

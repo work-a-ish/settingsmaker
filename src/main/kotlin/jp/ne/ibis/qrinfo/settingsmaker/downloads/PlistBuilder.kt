@@ -6,11 +6,7 @@ import jp.ne.ibis.qrinfo.settingsmaker.utils.ExcelUtils
  * Excelファイルからplistを作成するためのクラス
  * @param data 取得した 設定ファイル.xlsx のByteArray
  */
-class PlistBuilder(data: ByteArray) {
-    /**
-     * 取得した設定ファイルのByteArray
-     */
-    private val byteData = data
+class PlistBuilder(private val data: ByteArray) {
     /**
      * 取得した設定ファイルのシート名
      */
@@ -21,7 +17,7 @@ class PlistBuilder(data: ByteArray) {
      * @return config.plistの本文
      */
     fun createPlist(): String {
-        val plistSheetData = ExcelUtils.convertToSheet(byteData, sheetName)
+        val plistSheetData = ExcelUtils.convertToSheet(data, sheetName)
         return createPlistString(plistSheetData)
     }
 

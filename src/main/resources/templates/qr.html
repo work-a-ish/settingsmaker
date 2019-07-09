@@ -18,6 +18,8 @@
     </style>
 </head>
 <body>
+<p>QRコードの文頭につけるスキーマを入力してください</p>
+<form id="schemaField"><input id="schema" type="text"/></form>
 <h1>ドラッグ＆ドロップでファイルアップロード</h1>
 <div id="dragdroparea">台帳ファイルをここにドロップしてください。</div>
 <br/><br/>
@@ -56,6 +58,8 @@
            for (var i = 0; i < files.length; i++){
              fd.append('files', files[i]);
            }
+           var schema = document.forms.schemaField.schema.value;
+           fd.append('schema',schema)
            sendFileToServer(fd,status);
         }
         $(document).ready(function(){
@@ -87,6 +91,8 @@
             });
         });
     });
+
+
 </script>
 </body>
 </html>

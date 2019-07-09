@@ -10,11 +10,7 @@ typealias SheetData = List<RowData>
  * Excelファイルからymlを作成するためのクラス
  * @param data 取得した 設定ファイル.xlsx のByteArray
  */
-class YMLBuilder(data: ByteArray) {
-    /**
-     * 取得した設定ファイルのByteArray
-     */
-    private val byteData = data
+class YMLBuilder(private val data: ByteArray) {
     /**
      * 取得した設定ファイルのシート名のリスト
      */
@@ -27,7 +23,7 @@ class YMLBuilder(data: ByteArray) {
     fun createYML(): String {
         // Sheet名とSheetDataのMap
         val settingsSheetData = sheetNames.associate {
-            it to convertToSheet(byteData, it)
+            it to convertToSheet(data, it)
         }
 
         return createYmlString(settingsSheetData)
