@@ -59,6 +59,8 @@ class InputFormController {
         val jsString = JavaScriptBuilder(file.bytes).createJS()
         // config.plistの本文
         val plistString = PlistBuilder(file.bytes).createPlist()
+        // Excelの作成
+        ExcelBuilder(file.bytes).createExcel()
 
         // settings.ymlをDLするための一時ファイル
         FileCopyUtils.copy(ymlString.toByteArray(charset("UTF-8")), FileOutputStream("temp_settings.downloads"))
@@ -104,5 +106,12 @@ class InputFormController {
     @GetMapping("/qr_code", produces = ["application/octet-stream"])
     @ResponseBody
     fun downloadQR(): Resource = FileSystemResource("QRCode.zip")
+
+    /**
+     * 台帳サンプルのDL用URL
+     */
+    @GetMapping("/QRinfo_sample.xlsx", produces = ["application/octet-stream"])
+    @ResponseBody
+    fun downloadExcel(): Resource = FileSystemResource("QRinfo_sample.xlsx")
 
 }
