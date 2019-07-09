@@ -1,9 +1,6 @@
 package jp.ne.ibis.qrinfo.settingsmaker.controller
 
-import jp.ne.ibis.qrinfo.settingsmaker.downloads.HTMLBuilder
-import jp.ne.ibis.qrinfo.settingsmaker.downloads.JavaScriptBuilder
-import jp.ne.ibis.qrinfo.settingsmaker.downloads.PlistBuilder
-import jp.ne.ibis.qrinfo.settingsmaker.downloads.YMLBuilder
+import jp.ne.ibis.qrinfo.settingsmaker.downloads.*
 import org.springframework.core.io.FileSystemResource
 import org.springframework.core.io.Resource
 import org.springframework.stereotype.Controller
@@ -31,7 +28,25 @@ class InputFormController {
     }
 
     /**
-     * ファイルD&D用のURL
+     * qr画面
+     */
+    @GetMapping("/qr")
+    fun showqr(): String {
+        return "qr"
+    }
+
+    /**
+     * 台帳ファイルアップロード用のURL
+     */
+    @PostMapping("/generateQR")
+    @ResponseBody
+    fun generateQR(@RequestParam("files") file: MultipartFile, model: Model) {
+        // QRコードの作成
+        QRCodeGenerator().generateQR(file.bytes)
+    }
+
+    /**
+     * 設定ファイルアップロード用のURL
      */
     @PostMapping("/upload")
     @ResponseBody
@@ -82,4 +97,12 @@ class InputFormController {
     @GetMapping("/config.plist", produces = ["application/octet-stream"])
     @ResponseBody
     fun downloadPlist(): Resource = FileSystemResource("temp_plist.downloads")
+
+    /**
+     * QRコードのDL用URL
+     */
+    @GetMapping("/qr_code", produces = ["application/octet-stream"])
+    @ResponseBody
+    fun downloadQR(): Resource = FileSystemResource("QRCode.zip")
+
 }

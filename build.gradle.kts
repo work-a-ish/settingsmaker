@@ -39,6 +39,9 @@ dependencies {
     // poi
     implementation("org.apache.poi:poi:3.13")
     implementation("org.apache.poi:poi-ooxml:3.13")
+    // QRコード生成用zxing
+    implementation("com.google.zxing:core:3.3.0")
+    implementation("com.google.zxing:javase:3.3.0")
 }
 
 tasks.withType<KotlinCompile> {

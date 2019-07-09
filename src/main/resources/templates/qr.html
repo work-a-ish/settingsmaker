@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <title>QRinfo用設定ファイル作成フォーム</title>
+    <title>QRinfo用QRコード作成フォーム</title>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
     <style>
@@ -18,15 +18,14 @@
     </style>
 </head>
 <body>
-<a href="qr">台帳ファイルからQRコードの作成をするときはこちら</a><br>
 <h1>ドラッグ＆ドロップでファイルアップロード</h1>
-<div id="dragdroparea">設定ファイルをここにドロップしてください。</div>
+<div id="dragdroparea">台帳ファイルをここにドロップしてください。</div>
 <br/><br/>
 <div id="status1"></div>
 <script>
         $(function() {
         function sendFileToServer(formData,status){
-        var uploadURL ="/upload";
+        var uploadURL ="/generateQR";
           $.ajax({
             url: uploadURL,
             type: "POST",
@@ -44,10 +43,7 @@
             success: function(result, textStatus, xhr) {
               //ajax通信が成功した
               $("#status1").append("File upload Done<br>");
-              $('#status1').append('<a href="settings.yml">settings.yml</a><br>');
-              $('#status1').append('<a href="index.pug">index.pug</a><br>');
-              $('#status1').append('<a href="main.js">main.js</a><br>');
-              $('#status1').append('<a href="config.plist">config.plist</a><br>');
+              $('#status1').append('<a href="qr_code">QRコード</a><br>');
             },
             error: function(xhr, textStatus, error) {
               //ajax通信が失敗した
