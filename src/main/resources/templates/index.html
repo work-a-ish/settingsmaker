@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>QRinfo用設定ファイル作成フォーム</title>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <style>
+    #dragdroparea {
+        border:2px dotted #0B85A1;
+        width:500px;
+        height: 100px;
+        color:#92AAB0;
+        text-align:left;vertical-align:middle;
+        padding:10px 10px 10 10px;
+        margin-bottom:10px;
+        font-size:200%;
+    }
+    </style>
+</head>
+<body>
+<h1>ドラッグ＆ドロップでファイルアップロード</h1>
+<div id="dragdroparea">ここにドロップしてください。</div>
+<br/><br/>
+<div id="status1"></div>
+<script>
+        $(function() {
+        function sendFileToServer(formData,status){
+        var uploadURL ="/upload";
+          $.ajax({
+            url: uploadURL,
+            type: "POST",
+            contentType:false,
+            processData: false,
+            cache: false,
+            data: formData,
+            timeout: 30000,
+            beforeSend: function(xhr, settings) {
+              //送信前の処理
+            },
+            complete: function(xhr, textStatus) {
+              //通信完了
+            },
+            success: function(result, textStatus, xhr) {
+              //ajax通信が成功した
+              $("#status1").append("File upload Done<br>");
+              $('#status1').append('<a href="settings.yml">settings.yml</a><br>');
+              $('#status1').append('<a href="index.pug">index.pug</a><br>');
+              $('#status1').append('<a href="main.js">main.js</a><br>');
+              $('#status1').append('<a href="config.plist">config.plist</a><br>');
+            },
+            error: function(xhr, textStatus, error) {
+              //ajax通信が失敗した
+              $('#status1').append('送信に失敗しました<br>');
+            }
+          });
+      }
+        function handleFileUpload(files,obj){
+         var fd = new FormData();
+           for (var i = 0; i < files.length; i++){
+             fd.append('files', files[i]);
+           }
+           sendFileToServer(fd,status);
+        }
+        $(document).ready(function(){
+            var obj = $("#dragdroparea");
+            obj.on('dragenter', function (e) {
+                e.stopPropagation();
+                e.preventDefault();
+            });
+            obj.on('dragover', function (e) {
+                 e.stopPropagation();
+                 e.preventDefault();
+            });
+            obj.on('drop', function (e) {
+             e.preventDefault();
+             var files = e.originalEvent.dataTransfer.files;
+             handleFileUpload(files);
+            });
+            $(document).on('dragenter', function (e){
+                e.stopPropagation();
+                e.preventDefault();
+            });
+            $(document).on('dragover', function (e){
+              e.stopPropagation();
+              e.preventDefault();
+            });
+            $(document).on('drop', function (e){
+                e.stopPropagation();
+                e.preventDefault();
+            });
+        });
+    });
+</script>
+</body>
+</html>
