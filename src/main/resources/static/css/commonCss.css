@@ -1,0 +1,25 @@
+     body {
+        margin:0 auto;
+        width:700px;
+     }
+
+    #dragdroparea {
+        border:2px dotted #0B85A1;
+        width:500px;
+        height: 100px;
+        color:#92AAB0;
+        text-align:left;
+        vertical-align:middle;
+        padding:10px 10px 10 10px;
+        margin-bottom:10px;
+        font-size:200%;
+    }
+
+    #schema {
+        border:#FF1493 1px #0B85A1;
+        border-radius:5px;
+        box-shadow:1px 1px 2px #666;
+        width:300px;
+        height:30px;
+        font-size:110%;
+    }
