@@ -17,7 +17,7 @@ $(function() {
             },
             success: function(result, textStatus, xhr) {
                 //ajax通信が成功した
-                $("#status1").append("それぞれクリックでDL<br>");
+                $("#status1").append("<br>それぞれクリックでDL<br>");
                 $('#status1').append('<a href="settings.yml">settings.yml</a><br>');
                 $('#status1').append('<a href="index.pug">index.pug</a><br>');
                 $('#status1').append('<a href="main.js">main.js</a><br>');
