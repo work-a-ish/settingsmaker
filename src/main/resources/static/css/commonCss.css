@@ -1,5 +1,6 @@
      body {
         margin:0 auto;
+        padding: 10px 10px 10px 10px;
         width:700px;
      }
 
@@ -10,7 +11,8 @@
         color:#92AAB0;
         text-align:left;
         vertical-align:middle;
-        padding:10px 10px 10 10px;
+        padding:10px 10px 10px 10px;
+        margin:0 auto;
         margin-bottom:10px;
         font-size:200%;
     }
@@ -22,4 +24,21 @@
         width:300px;
         height:30px;
         font-size:110%;
+    }
+
+    #status1 {
+        margin-left: 50px;
+        margin-right: 50px;
+        padding: 10px 10px 10px 10px;
+    }
+
+    #description {
+        background-color: #f8dce0;
+        margin-left: 50px;
+        margin-right: 50px;
+        padding: 10px 10px 10px 10px;
+    }
+
+    #schemaField {
+        margin-left: 10px;
     }

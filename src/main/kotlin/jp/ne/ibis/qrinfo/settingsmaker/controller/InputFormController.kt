@@ -22,17 +22,17 @@ class InputFormController {
     /**
      * index画面
      */
-    @GetMapping("/")
+    @GetMapping("/qr")
     fun showIndex(model: Model): String {
-        return "index"
+        return "qr"
     }
 
     /**
      * qr画面
      */
-    @GetMapping("/qr")
+    @GetMapping("/settings")
     fun showqr(): String {
-        return "qr"
+        return "settings"
     }
 
     /**

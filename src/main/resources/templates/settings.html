@@ -8,13 +8,17 @@
         <script src="/js/indexJs.js" th:src="@{/js/indexJs.js}"></script>
     </head>
     <body>
+        <br>
         <a href="qr">台帳ファイルからQRコードの作成をするときはこちら</a><br>
         <h1>ドラッグ＆ドロップでファイルアップロード</h1>
         <div id="dragdroparea">設定ファイルをここにドロップしてください。</div>
-        <br/><br/>
+        <br><br>
         <div id="status1"></div>
+        <div id="description">
         <p>【説明】設定ファイル(.xlsx)をドロップすると、各種ファイルをDLできます。<br>
         　　　　<a href="settingsFile_sample.xlsx">設定ファイルのサンプルはこちら</a><br>
-        　　　　設定ファイルのシート名は書き換えないでください。ファイル名の変更は自由です</p>
+        　　　　設定ファイルのシート名は書き換えないでください。<br>
+        　　　　ファイル名の変更は自由です</p>
+        </div>
     </body>
 </html>
